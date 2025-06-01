@@ -10,14 +10,13 @@ import time
 # Set up the Chrome driver with options to disable WebRTC
 options = webdriver.ChromeOptions()
 options.add_argument("--disable-webrtc")
+options.add_experimental_option('excludeSwitches', ['enable-logging'])
 driver = webdriver.Chrome(options=options)
 
 #URLs for products
-url = 'https://www.popmart.com'
+url = 'https://www.popmart.com/us'
 
 driver.get(url)
-
-bubuList = [40, 50, 195, 171, 270, 121]
 
 def get_box_numbers(set_number):
     # Go to main page of the set
@@ -54,13 +53,23 @@ def is_in_stock(url):
         return True
     except NoSuchElementException:
         return False
+    
 
-for bubu in bubuList:
-    box_numbers = get_box_numbers(bubu)
-    for box_number in box_numbers:
-        url = get_url(bubu, box_number)
-        if is_in_stock(url):
-            print(f'Box {box_number} from set {bubu} is in stock: {url}')
-        else:
-            print(f'Box {box_number} from set {bubu} is NOT in stock: {url}')
 
+# main method to check for stock
+def main(set_number):
+    try:
+        while True:
+            box_numbers = get_box_numbers(set_number)
+            for box_number in box_numbers:
+                url = get_url(set_number, box_number)
+                if is_in_stock(url):
+                    print(f'Box {box_number} from set {set_number} is in stock: {url}')
+            #time.sleep(5)  # Wait for 5 seconds before checking again
+    except KeyboardInterrupt:
+        print("Script interrupted by user.")
+        driver.quit()
+
+input_set_number = input("Enter the set number to check: ")
+
+main(input_set_number)
