@@ -31,3 +31,9 @@ You may Change as needed :smile:
 
 ## Example Google Sheet
 ![Sheets](images/GoogleSheets.png)
+
+## DISCLAIMER
+This script no longer works for the popmart site other than to notify when items are back in stock. Changes **CAN** be made in order to change what site this works for as long as adjustments are made to the script itself. This was made to buy items that are commonly very sought after for entertainment purposes **ONLY** and to help others boost their odds at getting these popular items. This is not optimal code and adjustments can be made to make it more optimal as well.
+
+### Potential fixes
+There is an issue with the runtime of the code. Because of how it is set up (unorganized and in a very short time span of a day). I rushed to complete it hence there are some optimizations that can be made. EX updates as the script goes rather than when it repeats.
